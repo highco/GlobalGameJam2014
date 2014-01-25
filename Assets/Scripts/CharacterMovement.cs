@@ -5,7 +5,6 @@ using System.Collections;
 public class CharacterMovement : MonoBehaviour
 {
     public float speed = 3.0F;
-    public float rotateSpeed = 3.0F;
     
     private CharacterController _characterController;
     private Vector3 _moveDirection;
@@ -26,5 +25,15 @@ public class CharacterMovement : MonoBehaviour
         _moveDirection = transform.TransformDirection(_moveDirection);
         _moveDirection *= speed;
         _characterController.Move(_moveDirection * Time.deltaTime);
+    }
+
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+
+    }
+
+    void OnHit(GameObject bullet)
+    {
+
     }
 }
