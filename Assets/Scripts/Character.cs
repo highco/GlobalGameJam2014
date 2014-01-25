@@ -8,6 +8,7 @@ public class Character : MonoBehaviour
     public int maxHealth = 4;
     public HealthBar healthBar;
     public SpriteRenderer spriteRenderer;
+    public Sprite[] spritesForTypes;
 
     private CharacterMovement _movement;
     private CharacterShooter _shooter;
@@ -20,7 +21,6 @@ public class Character : MonoBehaviour
         _shooter = GetComponent<CharacterShooter>();
         _gameController = GameObject.FindObjectOfType<GameController>();
         _health = maxHealth;
-        SetupLook();
     }
 
     public void DoUpdate(float dt)
@@ -43,6 +43,7 @@ public class Character : MonoBehaviour
     void SetupLook()
     {
         spriteRenderer.material.color = player.color;
+        spriteRenderer.sprite = spritesForTypes[(int)type];
         _shooter.color = player.color;
     }
 
@@ -58,6 +59,13 @@ public class Character : MonoBehaviour
 
                 if (_health <= 0)
                     _gameController.CharacterHit(bullet);
+            }
+            else if (bullet.Type == type.GetVictim())
+            {
+                _health++;
+                if (_health > maxHealth)
+                    _health = maxHealth;
+                healthBar.ShowPercentage((float)_health / maxHealth);
             }
         }
     }

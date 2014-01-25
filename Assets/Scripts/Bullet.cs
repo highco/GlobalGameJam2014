@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Bullet : MonoBehaviour {
 
+    public SpriteRenderer spriteRenderer;
     public CharacterType Type { 
         get {return _type;}
     }
@@ -14,6 +15,11 @@ public class Bullet : MonoBehaviour {
     {
         _type = aType;
         owner = anOwner;
-        this.renderer.material.color = owner.player.color;
+        spriteRenderer.color = owner.player.color;
+    }
+
+    void OnCollisionEnter(Collision collision) 
+    {
+        Destroy(this.gameObject);
     }
 }

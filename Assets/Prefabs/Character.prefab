@@ -92,7 +92,7 @@ Transform:
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.5351851, y: -.451437742, z: -4.27519083}
-  m_LocalScale: {x: .400000006, y: .400000006, z: .400000006}
+  m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children:
   - {fileID: 400008}
   - {fileID: 400006}
@@ -198,9 +198,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  maxHealth: 4
+  maxHealth: 10
   healthBar: {fileID: 11400006}
   spriteRenderer: {fileID: 21200000}
+  spritesForTypes:
+  - {fileID: 21300022, guid: de4a206ae39cb43eeb009e4b0470ae35, type: 3}
+  - {fileID: 21300018, guid: de4a206ae39cb43eeb009e4b0470ae35, type: 3}
+  - {fileID: 21300020, guid: de4a206ae39cb43eeb009e4b0470ae35, type: 3}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -224,11 +228,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96b8c1ecad69749d18fcbe7ba2012ca8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 100000, guid: 12e851b0a4f144a8d941fc0b8dd1e076, type: 2}
+  bulletPrefabs:
+  - {fileID: 100000, guid: c7140db6388cd43dd94a6ec1041bb9c2, type: 2}
+  - {fileID: 100002, guid: 46c6f22e8ee944c01b18a6201824ce6c, type: 2}
+  - {fileID: 100002, guid: bb0ebf98dce0a46b9ac722513b9fdb66, type: 2}
   turret: {fileID: 400006}
   bulletSpawnPoint: {fileID: 400002}
-  reloadTime: .200000003
-  bulletSpeed: 600
+  reloadTime: .300000012
+  bulletSpeed: 1000
   color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &11400006
 MonoBehaviour:
@@ -247,7 +254,7 @@ CapsuleCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 1e3b3f2224c2744729244eab71070485, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: .5

@@ -8,5 +8,6 @@ public class GUI : MonoBehaviour {
     public void ShowScoreForPlayer(Player player)
     {
         playerScoreLabels[player.index].text = player.name + ": " + player.score; 
+        playerScoreLabels[player.index].color = player.color;
     }
 }

@@ -19,7 +19,7 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        Color[] colors = new Color[] {Color.blue, Color.red, Color.yellow};
+        Color[] colors = new Color[] {Color.green, Color.red, Color.yellow};
         for (int i = 0; i < 3; i++)
         {
             Player player = new Player("Player_" + i, i);
@@ -35,9 +35,12 @@ public class GameController : MonoBehaviour
     void SpawnCharacters()
     {
         List<GameObject> selectedSpawnPoints = GetRandomSpawnPoints(3);
+        int randomTypeIndex = Random.Range(0, typesForCharacters.Length);
         for (int i = 0; i < 3; i++)
         {
-            SpawnCharacterForPlayer(_players[i], typesForCharacters[i], selectedSpawnPoints[i]);
+            SpawnCharacterForPlayer(_players[i], 
+                                    typesForCharacters[(randomTypeIndex + i) % typesForCharacters.Length], 
+                                    selectedSpawnPoints[i]);
         }
     }
 

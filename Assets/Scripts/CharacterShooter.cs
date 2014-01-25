@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CharacterShooter : MonoBehaviour
 {
-    public GameObject bulletPrefab;
+    public GameObject[] bulletPrefabs;
     public Transform turret;
     public Transform bulletSpawnPoint;
     public float reloadTime = 1f;
@@ -32,8 +32,11 @@ public class CharacterShooter : MonoBehaviour
     {
         _reloadingTimer = 0f;
 
-        GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity) as GameObject;
-        bullet.rigidbody.AddForce(turret.transform.forward * bulletSpeed);
+        GameObject bullet = Instantiate(bulletPrefabs[(int)type], bulletSpawnPoint.position, Quaternion.identity) as GameObject;
+        Vector3 direction = turret.transform.forward;
+        direction = Quaternion.Euler(0f, Random.Range(-4f, 4f), 0f) * direction;
+        bullet.rigidbody.AddForce(direction * bulletSpeed);
+        bullet.transform.rotation = turret.transform.rotation;
         bullet.transform.parent = GameObject.FindWithTag("DynamicObjects").transform;
         bullet.GetComponent<Bullet>().SetTypeAndOwner(type, GetComponent<Character>());
         Destroy(bullet, 1f);
