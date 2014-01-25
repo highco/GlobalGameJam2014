@@ -37,8 +37,5 @@ public class CharacterShooter : MonoBehaviour
         bullet.transform.parent = GameObject.FindWithTag("DynamicObjects").transform;
         bullet.GetComponent<Bullet>().SetTypeAndOwner(type, GetComponent<Character>());
         Destroy(bullet, 1f);
-
-		CameraShake main = (CameraShake)Camera.main.GetComponent("CameraShake");
-		main.doShake();
     }
 }
