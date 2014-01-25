@@ -1,48 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player : MonoBehaviour
-{
-    public int playerIndex;
-    public PlayerType type;
+public class Player  {
 
-    private CharacterMovement _movement;
-    private CharacterShooter _shooter;
+    public string name;
+    public int index;
+    public Color color;
+    public int score;
+    public Character character;
 
-    void Awake()
+    public Player(string aName, int aIndex)
     {
-        _movement = GetComponent<CharacterMovement>();
-        _shooter = GetComponent<CharacterShooter>();
-        SetupLook();
+        name = aName;
+        index = aIndex;
     }
 
-    void Update()
+    public void DoUpdate(float dt)
     {
-        float mainHorizontal = Input.GetAxis("Horizontal" + playerIndex);
-        float mainVertical = Input.GetAxis("Vertical" + playerIndex);
-        _movement.Move(mainHorizontal, mainVertical);
-
-        float secondaryHorizontal = Input.GetAxis("SecondaryHorizontal" + playerIndex);
-        float secondaryVertical = Input.GetAxis("SecondaryVertical" + playerIndex);
-        _shooter.Shoot(secondaryHorizontal, secondaryVertical, type);
-    }
-
-    public void InitializeWithType(PlayerType aType)
-    {
-        type = aType;
-        SetupLook();
-    }
-
-    void SetupLook()
-    {
-        renderer.material.color = type.ToColor();
-    }
-
-    void OnCollisionEnter(Collision collision) 
-    {
-        if (collision.gameObject.CompareTag("Bullet"))
+        if (character != null)
         {
-            print("Hit!");
+            character.DoUpdate(dt);
         }
     }
 }

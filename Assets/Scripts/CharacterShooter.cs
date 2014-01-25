@@ -7,19 +7,14 @@ public class CharacterShooter : MonoBehaviour
     public Transform turret;
     public Transform bulletSpawnPoint;
     public float reloadTime = 1f;
-    private int _index;
-    private Transform _transform;
-    private float _reloadingTimer;
+    public float bulletSpeed;
+    public Color color;
 
-    void Awake()
+    private float _reloadingTimer;
+        
+    public void Shoot(float horizontal, float vertical, CharacterType type, float dt)
     {
-        _index = GetComponent<Player>().playerIndex;
-        _transform = this.transform;
-    }
-    
-    public void Shoot(float horizontal, float vertical, PlayerType type)
-    {
-        _reloadingTimer += Time.deltaTime;
+        _reloadingTimer += dt;
 
         float xDirection = horizontal;
         float yDirection = vertical;
@@ -33,14 +28,14 @@ public class CharacterShooter : MonoBehaviour
         }
     }
 
-    void Shoot(PlayerType type)
+    void Shoot(CharacterType type)
     {
         _reloadingTimer = 0f;
 
         GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity) as GameObject;
-        bullet.rigidbody.AddForce(turret.transform.forward * 1000f);
+        bullet.rigidbody.AddForce(turret.transform.forward * bulletSpeed);
         bullet.transform.parent = GameObject.FindWithTag("DynamicObjects").transform;
-        bullet.GetComponent<Bullet>().Type = type;
-        Destroy(bullet, 2f);
+        bullet.GetComponent<Bullet>().SetTypeAndOwner(type, GetComponent<Character>());
+        Destroy(bullet, 1f);
     }
 }

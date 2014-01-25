@@ -434,7 +434,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 4
+    axis: 2
     joyNum: 3
   - serializedVersion: 3
     m_Name: SecondaryVertical3
@@ -450,7 +450,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 4
+    axis: 2
     joyNum: 4
   - serializedVersion: 3
     m_Name: SecondaryVertical4

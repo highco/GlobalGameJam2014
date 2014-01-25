@@ -1,4 +1,4 @@
-﻿public enum PlayerType
+﻿public enum CharacterType
 {
     Rock,
     Paper, 

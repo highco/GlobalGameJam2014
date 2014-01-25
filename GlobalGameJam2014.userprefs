@@ -1,17 +1,23 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Player.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Character.cs">
     <Files>
-      <File FileName="Assets/Scripts/CharacterMovement.cs" Line="11" Column="17" />
-      <File FileName="Assets/Scripts/Player.cs" Line="32" Column="27" />
-      <File FileName="Assets/Scripts/CharacterShooter.cs" Line="22" Column="43" />
-      <File FileName="Assets/Scripts/Types.cs" Line="6" Column="2" />
+      <File FileName="Assets/Scripts/CharacterMovement.cs" Line="12" Column="40" />
+      <File FileName="Assets/Scripts/Character.cs" Line="38" Column="6" />
+      <File FileName="Assets/Scripts/CharacterShooter.cs" Line="38" Column="88" />
+      <File FileName="Assets/Scripts/CharacterType.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Extensions.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Bullet.cs" Line="10" Column="11" />
+      <File FileName="Assets/Scripts/Bullet.cs" Line="14" Column="6" />
+      <File FileName="Assets/GameController.cs" Line="67" Column="6" />
+      <File FileName="Assets/Scripts/GUI.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Player.cs" Line="13" Column="6" />
+      <File FileName="Assets/Scripts/HealthBar.cs" Line="13" Column="12" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/alexandershestakov/Documents/Unity/RockPaperScissorsGGJ/GlobalGameJam2014/Assets/Scripts/Character.cs" line="45" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

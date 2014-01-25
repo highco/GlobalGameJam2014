@@ -3,20 +3,17 @@ using System.Collections;
 
 public class Bullet : MonoBehaviour {
 
-    public PlayerType Type { 
-        set {
-            _type = value;
-            SetupTheLook();
-        } 
-        get { 
-            return _type;
-        }
+    public CharacterType Type { 
+        get {return _type;}
     }
+    public Character owner;
 
-    private PlayerType _type;
+    private CharacterType _type;
 
-    public void SetupTheLook()
+    public void SetTypeAndOwner(CharacterType aType, Character anOwner)
     {
-        this.renderer.material.color = _type.ToColor();
+        _type = aType;
+        owner = anOwner;
+        this.renderer.material.color = owner.player.color;
     }
 }

@@ -4,37 +4,92 @@ using System.Collections.Generic;
 
 public class GameController : MonoBehaviour
 {
-    public GameObject playerPrefab;
-    public PlayerType[] typesForPlayers;
+    public GameObject characterPrefab;
+    public CharacterType[] typesForCharacters;
 
-    private GameObject[] _spawnPoints;
     private List<Player> _players = new List<Player>();
+    private GameObject[] _spawnPoints;
+    private GUI _gui;
 
     void Awake()
     {
         _spawnPoints = GameObject.FindGameObjectsWithTag("Respawn");
+        _gui = GameObject.FindObjectOfType<GUI>();
     }
 
     void Start()
     {
-        SpawnPlayersAtStart();
+        Color[] colors = new Color[] {Color.blue, Color.red, Color.yellow};
+        for (int i = 0; i < 3; i++)
+        {
+            Player player = new Player("Player_" + i, i);
+            player.score = 0;
+            player.color = colors[i];
+            _players.Add(player);
+        }
+
+        SpawnCharacters();
+        UpdateGUI();
     }
 
-    void SpawnPlayersAtStart()
+    void SpawnCharacters()
+    {
+        List<GameObject> selectedSpawnPoints = GetRandomSpawnPoints(3);
+        for (int i = 0; i < 3; i++)
+        {
+            SpawnCharacterForPlayer(_players[i], typesForCharacters[i], selectedSpawnPoints[i]);
+        }
+    }
+
+    List<GameObject> GetRandomSpawnPoints(int numOfSpawnPoints)
     {
         List<GameObject> unusedSpawnPoints = new List<GameObject>(_spawnPoints);
-        foreach (PlayerType type in typesForPlayers)
+        List<GameObject> result = new List<GameObject>();
+        for (int i = 0; i < numOfSpawnPoints; i++)
         {
-            Transform spawnPoint = unusedSpawnPoints[Random.Range(0 , unusedSpawnPoints.Count)].transform;
-            Player newPlayer = (Instantiate(playerPrefab, spawnPoint.position, Quaternion.identity) as GameObject).GetComponent<Player>();
-            newPlayer.playerIndex = (int)type;
-            newPlayer.InitializeWithType(type);
-            unusedSpawnPoints.Remove(spawnPoint.gameObject);
+            GameObject randomSpawnPoint = unusedSpawnPoints[Random.Range(0 , unusedSpawnPoints.Count)];
+            result.Add(randomSpawnPoint);
+            unusedSpawnPoints.Remove(randomSpawnPoint);
         }
+        return result;
+    }
+
+    void UpdateGUI()
+    {
+        foreach (Player player in _players)
+            _gui.ShowScoreForPlayer(player);
     }
 
     void Update()
     {
-        
+        foreach(Player player in _players)
+            player.DoUpdate(Time.deltaTime);
+    }
+
+    void SpawnCharacterForPlayer(Player player, CharacterType type, GameObject spawnPoint)
+    {
+        Character newCharacter = (Instantiate(characterPrefab, spawnPoint.transform.position, Quaternion.identity) as GameObject).GetComponent<Character>();
+        newCharacter.player = player;
+        player.character = newCharacter;
+        newCharacter.InitializeWithType(type);
+    }
+
+    public void CharacterHit(Bullet bullet)
+    {
+        bullet.owner.player.score += 1;
+        _gui.ShowScoreForPlayer(bullet.owner.player);
+
+        foreach (Player player in _players)
+        {
+            player.character.Explode();
+        }
+
+        StartCoroutine(WaitAndRespawn(1f));
+    }
+
+    IEnumerator WaitAndRespawn(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        SpawnCharacters();
     }
 }
