@@ -3,13 +3,23 @@ using System.Collections;
 
 public class PowerUp : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
+    public PowerupType type;
+    public SpriteRenderer spriteRenderer;
+    public Sprite[] spritesForTypes;
+    public PowerUpSpawnPoint spawnPoint;
+
+    public void SetupALook()
+    {
+        spriteRenderer.sprite = spritesForTypes[(int)type];
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            spawnPoint.occupier = null;
+            collision.gameObject.GetComponent<Character>().PickedUpPowerup(type);
+            Destroy(gameObject);
+        }
+    }
 }

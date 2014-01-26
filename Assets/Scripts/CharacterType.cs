@@ -4,3 +4,11 @@
     Paper, 
     Scissors
 }
+
+public enum PowerupType
+{
+    Health,
+    ShapeShiftRock,
+    ShapeShiftPaper,
+    ShapeShiftScissors
+}

@@ -2,14 +2,6 @@
 using System.Collections;
 
 public class PowerUpSpawnPoint : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public PowerupType[] possibleTypes;
+    public PowerUp occupier;
 }

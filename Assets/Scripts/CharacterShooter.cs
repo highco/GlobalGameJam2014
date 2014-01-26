@@ -38,6 +38,7 @@ public class CharacterShooter : MonoBehaviour
         bullet.rigidbody.AddForce(direction * bulletSpeed);
         bullet.transform.rotation = turret.transform.rotation;
         bullet.transform.parent = GameObject.FindWithTag("DynamicObjects").transform;
+        bullet.transform.localScale = bullet.transform.localScale * (0.8f + Random.Range(0f, 0.3f));
         bullet.GetComponent<Bullet>().SetTypeAndOwner(type, GetComponent<Character>());
         Destroy(bullet, 1f);
     }

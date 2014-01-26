@@ -44,4 +44,18 @@ public static class Extensions {
                 return CharacterType.Rock;
         }
     }
+
+    public static CharacterType ToCharacterType(this PowerupType type)
+    {
+        switch(type)
+        {
+            default:
+            case PowerupType.ShapeShiftRock:
+                return CharacterType.Rock;
+            case PowerupType.ShapeShiftPaper:
+                return CharacterType.Paper;
+            case PowerupType.ShapeShiftScissors:
+                return CharacterType.Scissors;
+        }
+    }
 }
