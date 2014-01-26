@@ -83,6 +83,27 @@ public class Character : MonoBehaviour
         }
     }
 
+	void getHit(Bullet bullet)
+	{
+		_health--;
+		healthBar.ShowPercentage((float)_health / maxHealth);
+
+//		CameraShake main = (CameraShake)Camera.main.GetComponent("CameraShake");
+
+		if (_health <= 0)
+		{
+			_gameController.CharacterHit(bullet, this);
+//			main.doShake(0.5f);
+		}
+		else
+		{
+            StartCoroutine(ShrinkBackAndForth(0.2f));
+//			main.doShake();
+		}
+
+
+	}
+
     IEnumerator ShrinkBackAndForth(float time)
     {
         transform.localScale = _normalScale;
