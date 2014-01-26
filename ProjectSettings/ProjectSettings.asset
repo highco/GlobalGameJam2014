@@ -10,8 +10,8 @@ PlayerSettings:
   targetGlesGraphics: 1
   targetResolution: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
-  productName: GlobalGameJam2014
+  companyName: DAMN/HI
+  productName: DAMN HI RPS
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   defaultScreenWidth: 1280
