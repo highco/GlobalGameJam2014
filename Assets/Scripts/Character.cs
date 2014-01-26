@@ -17,6 +17,8 @@ public class Character : MonoBehaviour
     private int _health;
     private bool _stopped;
     private Vector3 _normalScale;
+    private bool _canDash = true;
+    private float _nextDashTime = 0;
 
     void Awake()
     {
@@ -34,14 +36,28 @@ public class Character : MonoBehaviour
 
         float mainHorizontal = Input.GetAxis("Horizontal" + player.index);
         float mainVertical = Input.GetAxis("Vertical" + player.index);
-        if (Mathf.Abs(mainHorizontal) > 0.1 || Mathf.Abs(mainVertical) > 0.1)
-            _movement.Move(mainHorizontal, mainVertical, dt);
-        else
-            _movement.Move(0, 0, dt);
+        _movement.Move(mainHorizontal, mainVertical, dt);
 
         float secondaryHorizontal = Input.GetAxis("SecondaryHorizontal" + player.index);
         float secondaryVertical = Input.GetAxis("SecondaryVertical" + player.index);
         _shooter.Shoot(secondaryHorizontal, secondaryVertical, type, dt);
+
+         
+        const float dashTime = 0.1f;
+        if (Input.GetAxis("TriggerAxis" + player.index) > 0.9)
+        {
+            if (_canDash && Time.time > _nextDashTime)
+            {
+                _movement.Dash(dashTime);
+                _shooter.Dash(dashTime);
+                _canDash = false;
+                _nextDashTime = Time.time + dashTime * 6;
+            }
+        }
+        else 
+        {
+            _canDash=true;
+        }
     }
 
     public void InitializeWithType(CharacterType aType)

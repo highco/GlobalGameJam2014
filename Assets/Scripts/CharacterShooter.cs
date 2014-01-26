@@ -11,10 +11,14 @@ public class CharacterShooter : MonoBehaviour
     public Color color;
 
     private float _reloadingTimer;
-        
+    private bool _controlsDisabled;    
+
     public void Shoot(float horizontal, float vertical, CharacterType type, float dt)
     {
         _reloadingTimer += dt;
+
+        if (_controlsDisabled)
+            return;
 
         float xDirection = horizontal;
         float yDirection = vertical;
@@ -41,5 +45,17 @@ public class CharacterShooter : MonoBehaviour
         bullet.transform.localScale = bullet.transform.localScale * (0.8f + Random.Range(0f, 0.3f));
         bullet.GetComponent<Bullet>().SetTypeAndOwner(type, GetComponent<Character>());
         Destroy(bullet, 1f);
+    }
+
+    public void Dash(float time)
+    {
+        _controlsDisabled = true;
+        StartCoroutine(EnableControlsAfter(time));
+    }
+    
+    IEnumerator EnableControlsAfter(float time)
+    {
+        yield return new WaitForSeconds(time);
+        _controlsDisabled = false;
     }
 }
