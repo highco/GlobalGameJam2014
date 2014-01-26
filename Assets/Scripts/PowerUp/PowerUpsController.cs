@@ -4,7 +4,7 @@ using System.Collections;
 public class PowerUpsController : MonoBehaviour {
 
     public GameObject[] _spawnPoints;
-    public GameObject powerupPrefab;
+    public GameObject[] powerupPrefabsForTypes;
 
     public float spawningInterval = 6f;
     public float spawningVariance = 2f;
@@ -40,11 +40,13 @@ public class PowerUpsController : MonoBehaviour {
     {
         if (point.occupier == null)
         {
-            PowerUp powerUp = (Instantiate(powerupPrefab, point.transform.position, Quaternion.Euler(90f, 0f, 0f)) as GameObject).GetComponent<PowerUp>();
-            powerUp.type = point.possibleTypes[Random.Range(0, point.possibleTypes.Length)];
+            PowerupType type = point.possibleTypes[Random.Range(0, point.possibleTypes.Length)];
+            PowerUp powerUp = (Instantiate(powerupPrefabsForTypes[(int)type], 
+                                           point.transform.position, 
+                                           Quaternion.Euler(90f, 0f, 0f)) as GameObject).GetComponent<PowerUp>();
+            powerUp.type = type;
             powerUp.spawnPoint = point;
             point.occupier = powerUp;
-            powerUp.SetupALook();
         }
     }
 }

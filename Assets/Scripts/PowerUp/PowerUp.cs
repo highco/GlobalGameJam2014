@@ -5,13 +5,7 @@ public class PowerUp : MonoBehaviour {
 
     public PowerupType type;
     public SpriteRenderer spriteRenderer;
-    public Sprite[] spritesForTypes;
     public PowerUpSpawnPoint spawnPoint;
-
-    public void SetupALook()
-    {
-        spriteRenderer.sprite = spritesForTypes[(int)type];
-	}
 
     void OnCollisionEnter(Collision collision)
     {
