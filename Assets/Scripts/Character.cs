@@ -10,6 +10,9 @@ public class Character : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public Sprite[] spritesForTypes;
     public GameObject deathFXPrefab;
+    public AudioClip[] shootSoundsForTypes;
+    public AudioClip powerupSound;
+    public AudioClip deathSound;
 
     private CharacterMovement _movement;
     private CharacterShooter _shooter;
@@ -42,7 +45,8 @@ public class Character : MonoBehaviour
 
         float secondaryHorizontal = Input.GetAxis("SecondaryHorizontal" + player.index);
         float secondaryVertical = Input.GetAxis("SecondaryVertical" + player.index);
-        _shooter.Shoot(secondaryHorizontal, secondaryVertical, type, dt);
+        if (_shooter.Shoot(secondaryHorizontal, secondaryVertical, type, dt))
+            AudioSource.PlayClipAtPoint(shootSoundsForTypes[(int)type], Vector3.zero);
     }
 
     public void InitializeWithType(CharacterType aType)
@@ -65,13 +69,7 @@ public class Character : MonoBehaviour
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
             if (bullet.Type == type.GetPredator())
             {
-                _health--;
-                healthBar.ShowPercentage((float)_health / maxHealth);
-
-                if (_health <= 0)
-                    _gameController.CharacterHit(bullet, this);
-                else
-                    StartCoroutine(ShrinkBackAndForth(0.2f));
+				getHit(bullet);
             }
             else if (bullet.Type == type.GetVictim())
             {
@@ -82,6 +80,25 @@ public class Character : MonoBehaviour
             }
         }
     }
+
+	void getHit(Bullet bullet)
+	{
+		_health--;
+		healthBar.ShowPercentage((float)_health / maxHealth);
+
+		CameraShake main = (CameraShake)Camera.main.GetComponent("CameraShake");
+
+		if (_health <= 0)
+		{
+			_gameController.CharacterHit(bullet, this);
+			main.doShake(0.5f);
+		}
+		else
+		{
+            StartCoroutine(ShrinkBackAndForth(0.2f));
+			main.doShake();
+		}
+	}
 
     IEnumerator ShrinkBackAndForth(float time)
     {
@@ -97,6 +114,8 @@ public class Character : MonoBehaviour
         GameObject fx = Instantiate(deathFXPrefab, transform.position, Quaternion.Euler(90f, 0f, 0f)) as GameObject;
         fx.GetComponent<SpriteRenderer>().color = player.color;
         Destroy(fx, 9f / 24f);
+
+        AudioSource.PlayClipAtPoint(deathSound, Vector3.zero);
     }
 
     public void Stop()
@@ -117,5 +136,6 @@ public class Character : MonoBehaviour
             type = powerUpType.ToCharacterType();
             SetupLook();
         }
+        AudioSource.PlayClipAtPoint(powerupSound, Vector3.zero);
     }
 }

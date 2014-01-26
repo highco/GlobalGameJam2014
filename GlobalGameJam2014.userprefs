@@ -1,20 +1,20 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Character.cs">
     <Files>
       <File FileName="Assets/Scripts/PowerUp/PowerUpSpawnPoint.cs" Line="4" Column="49" />
-      <File FileName="Assets/Scripts/CharacterMovement.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Character.cs" Line="89" Column="25" />
-      <File FileName="Assets/Scripts/CharacterShooter.cs" Line="41" Column="97" />
+      <File FileName="Assets/Scripts/CharacterMovement.cs" Line="32" Column="26" />
+      <File FileName="Assets/Scripts/Character.cs" Line="20" Column="5" />
+      <File FileName="Assets/Scripts/CharacterShooter.cs" Line="44" Column="38" />
       <File FileName="Assets/Scripts/CharacterType.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Extensions.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Bullet.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/GUI.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Player.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/HealthBar.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/PowerUp/PowerUpsController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/GameController.cs" Line="98" Column="41" />
-      <File FileName="Assets/Scripts/PowerUp/PowerUp.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GUI.cs" Line="21" Column="28" />
+      <File FileName="Assets/Scripts/Player.cs" Line="16" Column="6" />
+      <File FileName="Assets/Scripts/HealthBar.cs" Line="21" Column="2" />
+      <File FileName="Assets/Scripts/PowerUp/PowerUpsController.cs" Line="43" Column="46" />
+      <File FileName="Assets/Scripts/GameController.cs" Line="24" Column="36" />
+      <File FileName="Assets/Scripts/PowerUp/PowerUp.cs" Line="9" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

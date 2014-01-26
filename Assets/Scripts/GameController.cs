@@ -20,10 +20,15 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        List<string> unusedNames = new List<string>() {"Chuck", "Rock Star", 
+            "Doodle Face", "Candy Saga", "Scissor Sister", "The Slicer", "Angry Rock", 
+            "HD, Ready?", "Paper Pants", "Paper, Please!"};
 
         for (int i = 0; i < 3; i++)
         {
-            Player player = new Player("Player_" + i, i);
+            string randomName = unusedNames[Random.Range(0, unusedNames.Count)];
+            unusedNames.Remove(randomName);
+            Player player = new Player(randomName, i);
             player.score = 0;
             player.color = colorsForPlayers[i];
             _players.Add(player);

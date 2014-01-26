@@ -13,12 +13,12 @@ public class CharacterShooter : MonoBehaviour
     private float _reloadingTimer;
     private bool _controlsDisabled;    
 
-    public void Shoot(float horizontal, float vertical, CharacterType type, float dt)
+    public bool Shoot(float horizontal, float vertical, CharacterType type, float dt)
     {
         _reloadingTimer += dt;
 
         if (_controlsDisabled)
-            return;
+            return false;
 
         float xDirection = horizontal;
         float yDirection = vertical;
@@ -29,7 +29,9 @@ public class CharacterShooter : MonoBehaviour
             (Mathf.Abs(xDirection) > 0.01 || Mathf.Abs(yDirection) > 0.01))
         {
             Shoot(type);
+            return true;
         }
+        return false;
     }
 
     void Shoot(CharacterType type)
