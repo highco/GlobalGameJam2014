@@ -7,7 +7,7 @@ public class GUI : MonoBehaviour {
     public GUIText[] playerScoreLabels;
     public GUIText timerLabel;
 
-    private float _timeLeft = 120f;
+    private float _timeLeft = 180f;
 
     public void ShowScoreForPlayer(Player player)
     {
@@ -18,6 +18,8 @@ public class GUI : MonoBehaviour {
     void Update()
     {
         _timeLeft -= Time.deltaTime;
+        if (_timeLeft < 0)
+            Application.LoadLevel("Main");
         timerLabel.text = FormatSeconds(_timeLeft);
     }
 

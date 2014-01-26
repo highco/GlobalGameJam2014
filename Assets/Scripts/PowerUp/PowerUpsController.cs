@@ -11,15 +11,29 @@ public class PowerUpsController : MonoBehaviour {
 
     private float _spawningTimer;
     private float _nextSpawnTime;
+   
 
-    void Awake()
+    public void Cleanup()
+    {
+        PowerUp[] powerups = GameObject.FindObjectsOfType<PowerUp>();
+        foreach (PowerUp up in powerups)
+        {
+                Destroy(up.gameObject);
+        }
+    }
+
+    public void FindSpawnPoints()
     {
         _spawnPoints = GameObject.FindGameObjectsWithTag("PowerUpRespawn");
         _nextSpawnTime = spawningInterval + Random.Range(-spawningVariance / 2f, spawningVariance / 2f);
+        _spawningTimer = 0f;
     }
 
     void Update()
     {
+        if (_spawnPoints == null || _spawnPoints.Length <= 0)
+            return;
+
         _spawningTimer += Time.deltaTime;
         if (_spawningTimer > _nextSpawnTime)
         {
@@ -46,6 +60,7 @@ public class PowerUpsController : MonoBehaviour {
                                            Quaternion.Euler(90f, 0f, 0f)) as GameObject).GetComponent<PowerUp>();
             powerUp.type = type;
             powerUp.spawnPoint = point;
+            powerUp.transform.parent = powerUp.transform;
             point.occupier = powerUp;
         }
     }

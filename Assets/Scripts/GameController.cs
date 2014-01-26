@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class GameController : MonoBehaviour
 {
+    public GameObject[] levels;
+
     public GameObject characterPrefab;
     public Color[] colorsForPlayers;
     public CharacterType[] typesForCharacters;
@@ -11,10 +13,11 @@ public class GameController : MonoBehaviour
     private List<Player> _players = new List<Player>();
     private GameObject[] _spawnPoints;
     private GUI _gui;
+    private List<GameObject> _unusedLevels = new List<GameObject>();
+    private GameObject _activeLevel;
 
     void Awake()
     {
-        _spawnPoints = GameObject.FindGameObjectsWithTag("Respawn");
         _gui = GameObject.FindObjectOfType<GUI>();
     }
 
@@ -40,6 +43,18 @@ public class GameController : MonoBehaviour
 
     void SpawnCharacters()
     {
+        GameObject.FindObjectOfType<PowerUpsController>().Cleanup();
+
+        if (_unusedLevels.Count == 0)
+            _unusedLevels = new List<GameObject>(levels);
+        _activeLevel = _unusedLevels[Random.Range(0, _unusedLevels.Count)];
+        _activeLevel.SetActive(true);
+        _unusedLevels.Remove(_activeLevel);
+
+        GameObject.FindObjectOfType<PowerUpsController>().FindSpawnPoints();
+
+        _spawnPoints = GameObject.FindGameObjectsWithTag("Respawn");
+
         List<GameObject> selectedSpawnPoints = GetRandomSpawnPoints(3);
         int randomTypeIndex = Random.Range(0, typesForCharacters.Length);
         for (int i = 0; i < 3; i++)
@@ -117,6 +132,7 @@ public class GameController : MonoBehaviour
             if (player.character != null)
                 Destroy(player.character.gameObject);
 
+        _activeLevel.SetActive(false);
         SpawnCharacters();
     }
 }
