@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PowerUp/PowerUpsController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Character.cs">
     <Files>
-      <File FileName="Assets/Scripts/PowerUp/PowerUpsController.cs" Line="11" Column="2" />
+      <File FileName="Assets/Scripts/PowerUp/PowerUpsController.cs" Line="11" Column="1" />
+      <File FileName="Assets/Scripts/Character.cs" Line="101" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

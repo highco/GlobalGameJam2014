@@ -65,13 +65,7 @@ public class Character : MonoBehaviour
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
             if (bullet.Type == type.GetPredator())
             {
-                _health--;
-                healthBar.ShowPercentage((float)_health / maxHealth);
-
-                if (_health <= 0)
-                    _gameController.CharacterHit(bullet, this);
-                else
-                    StartCoroutine(ShrinkBackAndForth(0.2f));
+				getHit(bullet);
             }
             else if (bullet.Type == type.GetVictim())
             {
@@ -88,17 +82,17 @@ public class Character : MonoBehaviour
 		_health--;
 		healthBar.ShowPercentage((float)_health / maxHealth);
 
-//		CameraShake main = (CameraShake)Camera.main.GetComponent("CameraShake");
+		CameraShake main = (CameraShake)Camera.main.GetComponent("CameraShake");
 
 		if (_health <= 0)
 		{
 			_gameController.CharacterHit(bullet, this);
-//			main.doShake(0.5f);
+			main.doShake(0.5f);
 		}
 		else
 		{
             StartCoroutine(ShrinkBackAndForth(0.2f));
-//			main.doShake();
+			main.doShake();
 		}
 
 
