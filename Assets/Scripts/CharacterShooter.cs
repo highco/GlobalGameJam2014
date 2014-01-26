@@ -47,10 +47,9 @@ public class CharacterShooter : MonoBehaviour
         Destroy(bullet, 1f);
     }
 
-    public void Dash(float time)
+    public void SetDash(bool dash)
     {
-        _controlsDisabled = true;
-        StartCoroutine(EnableControlsAfter(time));
+        _controlsDisabled = dash;
     }
     
     IEnumerator EnableControlsAfter(float time)

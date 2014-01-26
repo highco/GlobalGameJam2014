@@ -4,9 +4,12 @@ using System.Collections;
 public class CharacterMovement : MonoBehaviour
 {
     public float speed = 3.0F;
-    
+    public float dashSpeedFactor = 2f;
+
     private Vector3 _moveDirection;
     private bool _controlsDisabled;
+
+    private bool _dashing;
 
     void Awake()
     {
@@ -26,6 +29,8 @@ public class CharacterMovement : MonoBehaviour
             _moveDirection.Normalize();
             _moveDirection = transform.TransformDirection(_moveDirection);
             _moveDirection *= speed * dt;
+            if (_dashing)
+                _moveDirection *= dashSpeedFactor;
         }
         else
             _moveDirection = Vector3.zero;
@@ -33,11 +38,9 @@ public class CharacterMovement : MonoBehaviour
         rigidbody.velocity = _moveDirection;
     }
 
-    public void Dash(float time)
+    public void SetDash(bool dash)
     {
-        rigidbody.velocity = rigidbody.velocity * 3f;
-        _controlsDisabled = true;
-        StartCoroutine(EnableControlsAfter(time));
+        _dashing = dash;
     }
 
     IEnumerator EnableControlsAfter(float time)

@@ -92,7 +92,7 @@ Transform:
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.5351851, y: -.451437742, z: -4.27519083}
-  m_LocalScale: {x: .5, y: .5, z: .5}
+  m_LocalScale: {x: .75, y: .75, z: .75}
   m_Children:
   - {fileID: 400008}
   - {fileID: 400006}
@@ -155,7 +155,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 17d224df90eab4ddfba6ef8aeedd8283, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -217,7 +217,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b6a85ea5e5234b41a3fd5d39f08ee51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 400
+  speed: 500
+  dashSpeedFactor: 2
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -236,7 +237,7 @@ MonoBehaviour:
   turret: {fileID: 400006}
   bulletSpawnPoint: {fileID: 400002}
   reloadTime: .0500000007
-  bulletSpeed: 800
+  bulletSpeed: 1200
   color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &11400006
 MonoBehaviour:
@@ -249,6 +250,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca53637060af143e2a689c33917bec90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fullColor: {r: .074394457, g: .632352948, b: .0782424212, a: 1}
+  emptyColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

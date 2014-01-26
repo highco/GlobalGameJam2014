@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class GameController : MonoBehaviour
 {
     public GameObject characterPrefab;
+    public Color[] colorsForPlayers;
     public CharacterType[] typesForCharacters;
 
     private List<Player> _players = new List<Player>();
@@ -19,12 +20,12 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        Color[] colors = new Color[] {Color.green, Color.red, Color.yellow};
+
         for (int i = 0; i < 3; i++)
         {
             Player player = new Player("Player_" + i, i);
             player.score = 0;
-            player.color = colors[i];
+            player.color = colorsForPlayers[i];
             _players.Add(player);
         }
 

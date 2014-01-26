@@ -11,7 +11,7 @@ GameObject:
   - 135: {fileID: 13500000}
   - 114: {fileID: 11400000}
   - 212: {fileID: 21200000}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: PowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,11 +42,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   spriteRenderer: {fileID: 21200000}
-  spritesForTypes:
-  - {fileID: 21300000, guid: de4a206ae39cb43eeb009e4b0470ae35, type: 3}
-  - {fileID: 21300022, guid: de4a206ae39cb43eeb009e4b0470ae35, type: 3}
-  - {fileID: 21300018, guid: de4a206ae39cb43eeb009e4b0470ae35, type: 3}
-  - {fileID: 21300020, guid: de4a206ae39cb43eeb009e4b0470ae35, type: 3}
   spawnPoint: {fileID: 0}
 --- !u!135 &13500000
 SphereCollider:
