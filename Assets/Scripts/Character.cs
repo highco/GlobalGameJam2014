@@ -101,7 +101,7 @@ public class Character : MonoBehaviour
 
 		if (_health <= 0)
 		{
-			_gameController.CharacterHit(bullet);
+			_gameController.CharacterHit(bullet, this);
 			main.doShake(0.5f);
 		}
 		else
