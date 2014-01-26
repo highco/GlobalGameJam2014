@@ -205,6 +205,7 @@ MonoBehaviour:
   - {fileID: 21300022, guid: de4a206ae39cb43eeb009e4b0470ae35, type: 3}
   - {fileID: 21300018, guid: de4a206ae39cb43eeb009e4b0470ae35, type: 3}
   - {fileID: 21300020, guid: de4a206ae39cb43eeb009e4b0470ae35, type: 3}
+  deathFXPrefab: {fileID: 100000, guid: e10656ee3f046451f84f03b9cca6a40c, type: 2}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -234,8 +235,8 @@ MonoBehaviour:
   - {fileID: 100002, guid: bb0ebf98dce0a46b9ac722513b9fdb66, type: 2}
   turret: {fileID: 400006}
   bulletSpawnPoint: {fileID: 400002}
-  reloadTime: .300000012
-  bulletSpeed: 1000
+  reloadTime: .0500000007
+  bulletSpeed: 800
   color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &11400006
 MonoBehaviour:

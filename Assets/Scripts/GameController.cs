@@ -77,22 +77,40 @@ public class GameController : MonoBehaviour
         newCharacter.InitializeWithType(type);
     }
 
-    public void CharacterHit(Bullet bullet)
+    public void CharacterHit(Bullet bullet, Character deadCharacter)
     {
         bullet.owner.player.score += 1;
         _gui.ShowScoreForPlayer(bullet.owner.player);
 
         foreach (Player player in _players)
         {
-            player.character.Explode();
+            player.character.Stop();
         }
 
-        StartCoroutine(WaitAndRespawn(1f));
+        deadCharacter.player.character = null;
+        deadCharacter.Explode();
+
+        StartCoroutine(WaitAndRespawn(1f, bullet.owner));
     }
 
-    IEnumerator WaitAndRespawn(float waitTime)
+    IEnumerator WaitAndRespawn(float waitTime, Character winner)
     {
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSeconds(waitTime / 2f);
+        foreach(Player player in _players)
+        {
+            if (player.character != null)
+            {
+                if (player.character == winner)
+                    iTween.ScaleTo(player.character.gameObject, Vector3.one * 1f, waitTime / 4f);
+                else
+                    iTween.ScaleTo(player.character.gameObject, Vector3.zero, waitTime / 4f);
+            }
+        }
+        yield return new WaitForSeconds(waitTime / 2f);        
+        foreach(Player player in _players)
+            if (player.character != null)
+                Destroy(player.character.gameObject);
+
         SpawnCharacters();
     }
 }
